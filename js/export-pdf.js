@@ -11,17 +11,19 @@ const path = require('path');
   const page = await browser.newPage();
 
   //Get HTML content from HTML file
-  const directory = path.join('./', 'index.html') 
-  const html = fs.readFileSync(directory, 'utf-8');
-  await page.setContent(html, { waitUntil: 'domcontentloaded' });
+  // Website URL to export as pdf
+  const website_url = 'https://generate-table.vercel.app/';
+
+  // Open URL in current page
+  await page.goto(website_url, { waitUntil: 'networkidle0' })
 
   // To reflect CSS used for screens instead of print
   await page.emulateMediaType('screen');
 
   // Downlaod the PDF
   const pdf = await page.pdf({
-    path: 'result.pdf',
-    margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
+    path: 'table.pdf',
+    // margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
     printBackground: true,
     format: 'A4',
   });
