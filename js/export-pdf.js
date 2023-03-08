@@ -11,7 +11,7 @@ const path = require('path');
   const page = await browser.newPage();
 
   //Get HTML content from HTML file
-  const directory = path.join('html', 'table.html') 
+  const directory = path.join('./', 'index.html') 
   const html = fs.readFileSync(directory, 'utf-8');
   await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
